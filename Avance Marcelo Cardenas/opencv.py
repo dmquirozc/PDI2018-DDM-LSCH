@@ -12,7 +12,7 @@ agest = cv2.CascadeClassifier('fist.xml')
 def on_change(val):
 	return None
 
-low_thresh = 0
+low_thresh = 36
 high_thresh = 255
 
 # VIDEO CAPTURE
@@ -52,51 +52,25 @@ while 1:
 
 	masked_hand = cv2.bitwise_and(canvas, eroded)
 
+	final = cv2.GaussianBlur(masked_hand,(7,7),0)
+	im, contours, hierarchy = cv2.findContours(final, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+	hand_trace = np.zeros((height, width, 1), np.uint8)
+	max_area = 0
+	ci = 0
+
+	for i in range(len(contours)):
+		cnt = contours[i]
+		area = cv2.contourArea(cnt)
+		if(area > max_area):
+			max_area = area
+			ci = i
+
+	if(len(contours) > 0):
+		cv2.drawContours(hand_trace, contours, ci, (255,255,0), 3)
 
 	cv2.imshow('Original', img)
-	cv2.imshow('Binaria', masked_hand)
-
-	'''final = cv2.GaussianBlur(img2,(7,7),0)
-	im, contours, hierarchy = cv2.findContours(final, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-
-	cv2.drawContours(img, contours, 0, (255,255,0), 3)
-	cv2.drawContours(final, contours, 0, (255,255,0), 3)
-
-
-
-	if len(contours) > 0:
-		cnt=contours[0]
-		hull = cv2.convexHull(cnt, returnPoints=False)
-		# finding convexity defects
-		defects = cv2.convexityDefects(cnt, hull)
-		count_defects = 0
-		# applying Cosine Rule to find angle for all defects (between fingers)
-		# with angle > 90 degrees and ignore defect
-		if defects!= None:
-			for i in range(defects.shape[0]):
-				p,q,r,s = defects[i,0]
-				finger1 = tuple(cnt[p][0])
-				finger2 = tuple(cnt[q][0])
-				dip = tuple(cnt[r][0])
-				# find length of all sides of triangle
-				a = math.sqrt((finger2[0] - finger1[0])**2 + (finger2[1] - finger1[1])**2)
-				b = math.sqrt((dip[0] - finger1[0])**2 + (dip[1] - finger1[1])**2)
-				c = math.sqrt((finger2[0] - dip[0])**2 + (finger2[1] - dip[1])**2)
-				# apply cosine rule here
-				angle = math.acos((b**2 + c**2 - a**2)/(2*b*c)) * 57.29
-				# ignore angles > 90 and highlight rest with red dots
-				if angle <= 90:
-				    count_defects += 1
-		# define actions required
-		if count_defects == 1:
-			cv2.putText(img,"THIS IS 2", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, 2)
-		elif count_defects == 2:
-			cv2.putText(img, "THIS IS 3", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, 2)
-		elif count_defects == 3:
-			cv2.putText(img,"This is 4", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, 2)
-		elif count_defects == 4:
-			cv2.putText(img,"THIS IS 5", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, 2)
-    '''
+	cv2.imshow('Contorno', hand_trace)
 
 
 
