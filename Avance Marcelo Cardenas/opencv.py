@@ -68,8 +68,9 @@ while 1:
 
 	if(len(contours) > 0):
 		cv2.drawContours(hand_trace, contours, ci, (255,255,0), 3)
-
-	convex_hull = cv2.convexHull(cnt[ci])
+		convex_hull = cv2.convexHull(contours[ci])
+		convex_defects = cv2.convexHull(cnts,returnPoints = False)
+		defects = cv2.convexityDefects(cnts,hull2)
 
 	cv2.imshow('Original', img)
 	cv2.imshow('Contorno', hand_trace)
