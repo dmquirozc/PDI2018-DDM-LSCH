@@ -4,7 +4,11 @@ import cv2
 import math
 
 #LOADING HAND CASCADE
-#hand_cascade = cv2.CascadeClassifier('Hand_haar_cascade.xml')
+hand_cascade = cv2.CascadeClassifier('Hand_haar_cascade.xml')
+face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
+agest = cv2.CascadeClassifier('fist.xml')
+
 def on_change(val):
 	return None
 
@@ -35,23 +39,30 @@ while 1:
 
 	h, s, v = cv2.split(bin) # Se usa el canal de saturación ya que es inmune a la luminosidad
 
-	#hand = hand_cascade.detectMultiScale(thresh1, 1.3, 5) # DETECTING HAND IN THE THRESHOLDE IMAGE
-	#mask = np.zeros(thresh1.shape, dtype = "uint8") # CREATING MASK
+	kernel = np.ones((3,3),np.uint8)
 
-	cv2.imshow('Grises', gray)
-	cv2.imshow('Binaria', s)
+	eroded = cv2.erode(s, kernel, 1)
+	hand = hand_cascade.detectMultiScale(s, 1.3, 5) # DETECTING HAND IN THE THRESHOLDE IMAGE
+
+	height, width, channels = img.shape
+	canvas = np.zeros((height, width, 1), np.uint8)
+
+	for (x,y,w,h) in hand: # MARKING THE DETECTED ROI
+		cv2.rectangle(canvas, (x-50,y),(x+w+50,y+h+100),255,-1)
+
+	masked_hand = cv2.bitwise_and(canvas, eroded)
 
 
-	'''for (x,y,w,h) in hand: # MARKING THE DETECTED ROI
-		cv2.rectangle(img,(x,y),(x+w,y+h), (122,122,0), 2)
-		cv2.rectangle(mask, (x,y),(x+w,y+h),255,-1)
+	cv2.imshow('Original', img)
+	cv2.imshow('Binaria', masked_hand)
 
-	img2 = cv2.bitwise_and(thresh1, mask)
-	final = cv2.GaussianBlur(img2,(7,7),0)
+	'''final = cv2.GaussianBlur(img2,(7,7),0)
 	im, contours, hierarchy = cv2.findContours(final, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
 	cv2.drawContours(img, contours, 0, (255,255,0), 3)
 	cv2.drawContours(final, contours, 0, (255,255,0), 3)
+
+
 
 	if len(contours) > 0:
 		cnt=contours[0]
