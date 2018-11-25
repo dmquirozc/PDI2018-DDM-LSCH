@@ -5,9 +5,6 @@ import math
 
 #LOADING HAND CASCADE
 hand_cascade = cv2.CascadeClassifier('Hand_haar_cascade.xml')
-face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
-agest = cv2.CascadeClassifier('fist.xml')
 
 def on_change(val):
 	return None
@@ -24,7 +21,7 @@ tbTitle_L = "Umbral inferior"
 tbTitle_H = "Umbral superior"
 
 cv2.namedWindow(winTitle)
-cv2.createTrackbar(tbTitle_L, winTitle , 0, 255, on_change)
+cv2.createTrackbar(tbTitle_L, winTitle , 35, 255, on_change)
 cv2.createTrackbar(tbTitle_H, winTitle, 255, 255, on_change)
 
 while 1:
@@ -67,17 +64,13 @@ while 1:
 			ci = i
 
 	if(len(contours) > 0):
-		cv2.drawContours(hand_trace, contours, ci, (255,255,0), 3)
+
+		cv2.drawContours(hand_trace, contours, ci, (255,255,255), 3)
 		convex_hull = cv2.convexHull(contours[ci])
-		convex_defects = cv2.convexHull(cnts,returnPoints = False)
-		defects = cv2.convexityDefects(cnts,hull2)
+		cv2.drawContours(hand_trace, [convex_hull], -1, (255, 255, 0), 3)
 
 	cv2.imshow('Original', img)
-	cv2.imshow('Contorno', hand_trace)
-	cv2.imshow('Convex', convex_hull)
-
-
-
+	cv2.imshow('Contorno + Convexo', hand_trace)
 
 	k = cv2.waitKey(30) & 0xff
 	if k == 27:
