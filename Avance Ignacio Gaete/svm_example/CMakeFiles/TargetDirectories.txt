@@ -1,0 +1,3 @@
+/home/ignacio/Documents/PDI/project/Avance Ignacio Gaete/svm_example/CMakeFiles/edit_cache.dir
+/home/ignacio/Documents/PDI/project/Avance Ignacio Gaete/svm_example/CMakeFiles/rebuild_cache.dir
+/home/ignacio/Documents/PDI/project/Avance Ignacio Gaete/svm_example/CMakeFiles/SVM.dir
