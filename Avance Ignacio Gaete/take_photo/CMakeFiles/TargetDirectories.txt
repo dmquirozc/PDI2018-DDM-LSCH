@@ -1,0 +1,3 @@
+/home/ignacio/Documents/PDI/project/Avance Ignacio Gaete/take_photo/CMakeFiles/edit_cache.dir
+/home/ignacio/Documents/PDI/project/Avance Ignacio Gaete/take_photo/CMakeFiles/rebuild_cache.dir
+/home/ignacio/Documents/PDI/project/Avance Ignacio Gaete/take_photo/CMakeFiles/Take_photo.dir

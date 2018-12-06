@@ -1,0 +1,3 @@
+/home/ignacio/Documents/PDI/project/Avance Ignacio Gaete/take_video/CMakeFiles/rebuild_cache.dir
+/home/ignacio/Documents/PDI/project/Avance Ignacio Gaete/take_video/CMakeFiles/edit_cache.dir
+/home/ignacio/Documents/PDI/project/Avance Ignacio Gaete/take_video/CMakeFiles/Take_video.dir
