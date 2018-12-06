@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Hand_Detector</class>
+ <widget class="QMainWindow" name="Hand_Detector">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>819</width>
+    <height>501</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Hand_Detector</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QScrollArea" name="scrollArea">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>391</width>
+      <height>321</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>389</width>
+       <height>319</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QScrollArea" name="scrollArea_2">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>10</y>
+      <width>381</width>
+      <height>321</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>379</width>
+       <height>319</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>400</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Start</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>340</y>
+      <width>321</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit_2">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>340</y>
+      <width>321</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>819</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuMen">
+    <property name="title">
+     <string>Menú</string>
+    </property>
+    <widget class="QMenu" name="menuDetecci_n">
+     <property name="title">
+      <string>Detección</string>
+     </property>
+     <addaction name="actionManos"/>
+     <addaction name="actionLetras"/>
+     <addaction name="actionPalabras"/>
+     <addaction name="actionFrases"/>
+    </widget>
+    <addaction name="actionCalibrar"/>
+    <addaction name="menuDetecci_n"/>
+   </widget>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>About</string>
+    </property>
+   </widget>
+   <addaction name="menuMen"/>
+   <addaction name="menuAbout"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionCalibrar">
+   <property name="text">
+    <string>Calibración</string>
+   </property>
+  </action>
+  <action name="actionDetecci_n_de_Volales">
+   <property name="text">
+    <string>Detección Vocales</string>
+   </property>
+  </action>
+  <action name="actionDetecci_n_Abecedario">
+   <property name="text">
+    <string>Detección Abecedario</string>
+   </property>
+  </action>
+  <action name="actionDetecci_n_Palarbas">
+   <property name="text">
+    <string>Detección Palabras</string>
+   </property>
+  </action>
+  <action name="actionDetecci_n_Frasee">
+   <property name="text">
+    <string>Detección Frases</string>
+   </property>
+  </action>
+  <action name="actionManos">
+   <property name="text">
+    <string>Manos</string>
+   </property>
+  </action>
+  <action name="actionLetras">
+   <property name="text">
+    <string>Letras</string>
+   </property>
+  </action>
+  <action name="actionPalabras">
+   <property name="text">
+    <string>Palabras</string>
+   </property>
+  </action>
+  <action name="actionFrases">
+   <property name="text">
+    <string>Frases</string>
+   </property>
+  </action>
+  <action name="actionLSCh">
+   <property name="text">
+    <string>LSCh</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Hand_Detector</receiver>
+   <slot>handCharge()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>410</x>
+     <y>451</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>409</x>
+     <y>250</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>handCharge()</slot>
+ </slots>
+</ui>
