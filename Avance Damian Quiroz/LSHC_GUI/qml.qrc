@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="FontAwsomeBrands">fonts/fa-brands-400.ttf</file>
+        <file alias="FontAwsomeRegular" >fonts/fa-regular-400.ttf</file>
+        <file alias="FontAwsomeSolid">fonts/fa-solid-900.ttf</file>
+        <file alias="FontAwsomeWebFont">fonts/fontawesome-webfont.ttf</file>
+        <file alias="FontAwsomeRoboto">fonts/Roboto-Regular.ttf</file>
+    </qresource>
+</RCC>
