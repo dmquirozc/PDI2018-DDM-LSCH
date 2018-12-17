@@ -1,0 +1,9 @@
+﻿  main.cpp
+e:\documents\visual studio 2017\projects\svm_lsa\main.cpp(21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+e:\documents\visual studio 2017\projects\svm_lsa\main.cpp(24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+e:\documents\visual studio 2017\projects\svm_lsa\main.cpp(183): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+e:\documents\visual studio 2017\projects\svm_lsa\main.cpp(258): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+e:\documents\visual studio 2017\projects\svm_lsa\main.cpp(261): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+e:\documents\visual studio 2017\projects\svm_lsa\main.cpp(262): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+e:\documents\visual studio 2017\projects\svm_lsa\main.cpp(267): warning C4305: 'initializing': truncation from 'double' to 'float'
+  SVM_LSA.vcxproj -> E:\Documents\Visual Studio 2017\Projects\SVMexample\x64\Debug\SVM_LSA.exe

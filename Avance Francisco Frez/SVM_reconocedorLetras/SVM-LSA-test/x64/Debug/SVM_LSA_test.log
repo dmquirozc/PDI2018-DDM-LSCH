@@ -1,0 +1,5 @@
+﻿  test_vocal.cpp
+e:\documents\visual studio 2017\projects\svm_lsa_test\test_vocal.cpp(19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+e:\documents\visual studio 2017\projects\svm_lsa_test\test_vocal.cpp(22): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+e:\documents\visual studio 2017\projects\svm_lsa_test\test_vocal.cpp(88): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  SVM_LSA_test.vcxproj -> E:\Documents\Visual Studio 2017\Projects\SVMexample\x64\Debug\SVM_LSA_test.exe

@@ -1,0 +1,4 @@
+﻿  tomaFoto.cpp
+e:\documents\visual studio 2017\projects\tomafoto\tomafoto.cpp(20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+e:\documents\visual studio 2017\projects\tomafoto\tomafoto.cpp(23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  TomaFoto.vcxproj -> E:\Documents\Visual Studio 2017\Projects\SVMexample\x64\Debug\TomaFoto.exe
