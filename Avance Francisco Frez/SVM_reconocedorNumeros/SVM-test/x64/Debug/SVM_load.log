@@ -1,0 +1,5 @@
+﻿  test_digits.cpp
+e:\documents\visual studio 2017\projects\svm_load\test_digits.cpp(19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+e:\documents\visual studio 2017\projects\svm_load\test_digits.cpp(22): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+e:\documents\visual studio 2017\projects\svm_load\test_digits.cpp(53): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  SVM_load.vcxproj -> E:\Documents\Visual Studio 2017\Projects\SVMexample\x64\Debug\SVM_load.exe

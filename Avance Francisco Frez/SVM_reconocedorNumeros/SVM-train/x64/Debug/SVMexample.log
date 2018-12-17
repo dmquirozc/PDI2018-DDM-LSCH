@@ -1,0 +1,18 @@
+﻿  train_digits.cpp
+e:\documents\visual studio 2017\projects\svmexample\train_digits.cpp(20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+e:\documents\visual studio 2017\projects\svmexample\train_digits.cpp(23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+e:\documents\visual studio 2017\projects\svmexample\train_digits.cpp(57): warning C4244: 'argument': conversion from 'float' to 'const _Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+e:\documents\visual studio 2017\projects\svmexample\train_digits.cpp(64): warning C4244: 'argument': conversion from 'float' to 'const _Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+e:\documents\visual studio 2017\projects\svmexample\train_digits.cpp(115): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+e:\documents\visual studio 2017\projects\svmexample\train_digits.cpp(191): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+e:\documents\visual studio 2017\projects\svmexample\train_digits.cpp(194): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+e:\documents\visual studio 2017\projects\svmexample\train_digits.cpp(195): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  SVMexample.vcxproj -> E:\Documents\Visual Studio 2017\Projects\SVMexample\x64\Debug\SVMexample.exe
