@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
 # Define project name
-project( HAND_TRACKING )
+project( HAND_DETECTION )
 
 # Find OpenCV, you may need to set OpenCV_DIR variable
 # to the absolute path to the directory containing OpenCVConfig.cmake file
@@ -14,7 +14,7 @@ project( HAND_TRACKING )
 find_package( OpenCV REQUIRED )
 
 # Declare the executable target built from your sources
-add_executable( HAND_TRACKING main.cpp )
+add_executable( HAND_DETECTION main.cpp )
 
 # Link your application with OpenCV libraries
-target_link_libraries( HAND_TRACKING ${OpenCV_LIBS} )
+target_link_libraries( HAND_DETECTION ${OpenCV_LIBS} )

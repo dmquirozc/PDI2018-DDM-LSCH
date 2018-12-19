@@ -1,0 +1,3 @@
+/home/ignacio/Documents/PDI/project/Avance Ignacio Gaete/hand_detection/CMakeFiles/edit_cache.dir
+/home/ignacio/Documents/PDI/project/Avance Ignacio Gaete/hand_detection/CMakeFiles/rebuild_cache.dir
+/home/ignacio/Documents/PDI/project/Avance Ignacio Gaete/hand_detection/CMakeFiles/HAND_DETECTION.dir

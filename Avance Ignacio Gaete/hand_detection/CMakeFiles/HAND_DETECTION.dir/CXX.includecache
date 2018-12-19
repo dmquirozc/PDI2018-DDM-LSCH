@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/ignacio/Documents/PDI/project/Avance Ignacio Gaete/hand_tracking/main.cpp
+/home/ignacio/Documents/PDI/project/Avance Ignacio Gaete/hand_detection/main.cpp
 iostream
 -
 opencv2/opencv.hpp

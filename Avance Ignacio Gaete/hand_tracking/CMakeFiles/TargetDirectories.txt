@@ -1,3 +1,0 @@
-/home/ignacio/Documents/PDI/project/Avance Ignacio Gaete/hand_tracking/CMakeFiles/edit_cache.dir
-/home/ignacio/Documents/PDI/project/Avance Ignacio Gaete/hand_tracking/CMakeFiles/rebuild_cache.dir
-/home/ignacio/Documents/PDI/project/Avance Ignacio Gaete/hand_tracking/CMakeFiles/HAND_TRACKING.dir

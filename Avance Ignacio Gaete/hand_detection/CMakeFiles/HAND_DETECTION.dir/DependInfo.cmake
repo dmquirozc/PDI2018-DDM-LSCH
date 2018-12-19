@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/ignacio/Documents/PDI/project/Avance Ignacio Gaete/hand_tracking/main.cpp" "/home/ignacio/Documents/PDI/project/Avance Ignacio Gaete/hand_tracking/CMakeFiles/HAND_TRACKING.dir/main.cpp.o"
+  "/home/ignacio/Documents/PDI/project/Avance Ignacio Gaete/hand_detection/main.cpp" "/home/ignacio/Documents/PDI/project/Avance Ignacio Gaete/hand_detection/CMakeFiles/HAND_DETECTION.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
