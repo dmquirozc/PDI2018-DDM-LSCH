@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include <QScrollBar>
 using namespace cv::ml;
 using namespace std;
 using namespace cv;
@@ -9,6 +9,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    /* Chat */
+    ui->lineEdit->setFocusPolicy(Qt::StrongFocus);
+    ui->textEdit->setFocusPolicy(Qt::NoFocus);
+    ui->textEdit->setReadOnly(true);
+
     hog = HOGDescriptor(
                 Size(200, 200),
                 Size(16, 16), //blocksize
@@ -25,14 +30,16 @@ MainWindow::MainWindow(QWidget *parent) :
     svm = Algorithm::load<SVM>("SVM/classifierModel.yml");
     tracker = TrackerCSRT::create();
     Roi=NULL;
+    previousLetter =" ";
     roiBox = Rect2d(100,50,200,200);
     timer=new QTimer();
-    timer->start(20);
+    timer->start(40);
     for(int i =0;i<3;i++){
-        mat_imagen[i]=new Mat();
+        mat_imagen[i]=new Mat(480,640, CV_8UC3, Scalar(255,255,255));;
         imagen[i] = new QImage();
     }
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(videoListo()));
+    QObject::connect(this,SIGNAL(nadaPressed()),this,SLOT(returnPressed()));
     setText();
 
 }
@@ -44,7 +51,7 @@ void MainWindow::setText(){
     font.setPixelSize(32);
     ui->pushButton->setFont(font);
 
-    ui->pushButton->setText("\uf04b");
+    ui->pushButton->setText("");
 }
 MainWindow::~MainWindow()
 {
@@ -77,18 +84,60 @@ void MainWindow::initVideo(){
          emit videoListo();
     }else{
         video.release();
-        delete(mat_imagen[0]);
+        //delete(mat_imagen[0]);
+        mat_imagen[0]=new Mat(480,640, CV_8UC3, Scalar(255,255,255));
         ui->actionIniciarCamara->setText("Iniciar Cámara");
         isVideoOpened=false;
+        emit videoListo();
+
     }
 
 }
+
+void MainWindow::appendMessage(const QString &from, const QString &message)
+{
+    if (from.isEmpty() || message.isEmpty())
+        return;
+
+    QTextCursor cursor(ui->textEdit->textCursor());
+    cursor.movePosition(QTextCursor::End);
+    QTextTable *table = cursor.insertTable(1, 2, tableFormat);
+    table->cellAt(0, 0).firstCursorPosition().insertText('<' + from + "> ");
+    table->cellAt(0, 1).firstCursorPosition().insertText(message);
+    QScrollBar *bar = ui->textEdit->verticalScrollBar();
+
+    bar->setValue(bar->maximum());
+
+}
+
+void MainWindow::returnPressed()
+{
+    QString text = ui->lineEdit->text();
+    if (text.isEmpty())
+        return;
+
+    if (text.startsWith(QChar('/'))) {
+        QColor color = ui->textEdit->textColor();
+        ui->textEdit->setTextColor(Qt::red);
+        ui->textEdit->append(tr("! Unknown command: %1")
+                         .arg(text.left(text.indexOf(' '))));
+        ui->textEdit->setTextColor(color);
+    } else {
+
+        appendMessage("Cliente", text);
+    }
+
+    ui->lineEdit->clear();
+}
+
+
 
 void MainWindow::videoListo(){
     if(isVideoOpened){
         video >> *mat_imagen[0];
         cv::resize(*mat_imagen[0],*mat_imagen[0],Size(640,480),0,0,INTER_LINEAR);
         if(!handDetection){
+           //
             putText(*mat_imagen[0], "Ponga su mano en el cuadro Rojo", Point(100,20), FONT_HERSHEY_SIMPLEX, 0.75, Scalar(0,0,255),2);
             rectangle(*mat_imagen[0], roiBox, Scalar( 0, 0, 255 ), 2, 1 );
             cvtColor(*mat_imagen[0], grayScale, CV_BGR2GRAY);
@@ -97,6 +146,7 @@ void MainWindow::videoListo(){
             Mat structuringElement = cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(5, 5));
             morphologyEx(backMask, backMask, cv::MORPH_CLOSE, structuringElement);
             bitwise_and(grayScale, backMask, foreGround);
+             Roi = (foreGround)(roiBox);
             *imagen[0] = MatToQImage(*mat_imagen[0]);
             QImage *out = new QImage(*imagen[0]);
             QLabel *label = new QLabel;
@@ -111,6 +161,7 @@ void MainWindow::videoListo(){
             morphologyEx(backMask, backMask, cv::MORPH_CLOSE, structuringElement);
             bitwise_and(grayScale, backMask, foreGround);
             /*Fondo segmentado*/
+            imshow("foreGround",foreGround);
             int limit_x = (*mat_imagen[0]).cols;
             int limit_y = (*mat_imagen[0]).rows;
             double boxlimit =roiBox.x;
@@ -148,20 +199,29 @@ void MainWindow::videoListo(){
             Mat testResponse;
             svm->predict(test_descriptor, testResponse);
             rectangle((*mat_imagen[0]), roiBox, Scalar( 255, 0, 0 ), 2, 1 );
-
+            QString letra;
             if (testResponse.at<float>(0, 0) == 1){
-                    cout << "La letra es: A" << endl;
+                 letra="A";
             }
             if (testResponse.at<float>(0, 0) == 2){
-                cout << "La letra es: B" << endl;
+                 letra="E";
             }
             if (testResponse.at<float>(0, 0) == 3){
-                cout << "La letra es: C" << endl;
+                letra="I";
             }
             if (testResponse.at<float>(0, 0) == 4){
-                cout << "No hay letra" << endl;
+                letra ="\n";
             }
-            //imshow("Roi",Roi);
+            if(letra!=previousLetter){
+                if(letra==QString("\n")){
+                    emit nadaPressed();
+                }else{
+                    ui->lineEdit->setText(ui->lineEdit->text()+QString(letra));
+                    previousLetter=letra;
+                }
+
+            }
+            imshow("Roi",Roi);
             //imshow("Tracking", (*mat_imagen[0]));
             *imagen[0] = MatToQImage(*mat_imagen[0]);
             QImage *out = new QImage(*imagen[0]);
@@ -169,9 +229,13 @@ void MainWindow::videoListo(){
             label->setPixmap(QPixmap::fromImage(*out, Qt::AutoColor));
             ui->video->setWidget(label);
         }
-
-
-
+    }else{
+        cv::resize(*mat_imagen[0],*mat_imagen[0],Size(640,480),0,0,INTER_LINEAR);
+        *imagen[0] = MatToQImage(*mat_imagen[0]);
+        QImage *out = new QImage(*imagen[0]);
+        QLabel *label = new QLabel;
+        label->setPixmap(QPixmap::fromImage(*out, Qt::AutoColor));
+        ui->video->setWidget(label);
     }
 
 

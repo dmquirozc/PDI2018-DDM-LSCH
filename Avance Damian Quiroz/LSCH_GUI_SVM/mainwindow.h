@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QImage>
 #include <QLabel>
+#include <QtGui>
 #include <opencv2/opencv.hpp>
 #include <opencv2/tracking.hpp>
 #include <opencv2/highgui.hpp>
@@ -11,6 +12,7 @@
 #include "opencv2/objdetect.hpp"
 #include <opencv2/core/ocl.hpp>
 #include <opencv2/ml.hpp>
+#include <QtFontDatabaseSupport/QtFontDatabaseSupport>
 #define SZ 200
 
 #define affineFlags WARP_INVERSE_MAP | INTER_LINEAR
@@ -18,7 +20,7 @@ using namespace cv::ml;
 using namespace std;
 using namespace cv;
 
-#include <QtFontDatabaseSupport/QtFontDatabaseSupport>
+
 namespace Ui {
 class MainWindow;
 }
@@ -39,11 +41,14 @@ public:
     QImage MatToQImage(const Mat& mat);
     QTimer* timer;
     void setText();
+    void appendMessage(const QString &from, const QString &message);
 public slots:
+
     void videoListo();
     void textoListo();
     void initVideo();
     void handDetect();
+    void returnPressed();
     //void deteccionManos();
 
 private:
@@ -57,10 +62,13 @@ private:
     Rect2d roiBox;
     Mat backGround, foreGround, foreThresh, backMask,grayScale;
     QFont font;
+    QString previousLetter;
+    QTextTableFormat tableFormat;
 
 signals:
     void imagenLista(int);
     void detectaManos();
+    void nadaPressed();
 
 };
 

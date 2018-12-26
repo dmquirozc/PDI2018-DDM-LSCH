@@ -34,8 +34,7 @@ HEADERS += \
 FORMS += \
         mainwindow.ui
 
-RESOURCES += qml.qrc \
-    qml.qrc
+RESOURCES += qml.qrc
 
 LIBS += `pkg-config \
     opencv \

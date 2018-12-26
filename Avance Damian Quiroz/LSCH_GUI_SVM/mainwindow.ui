@@ -98,23 +98,23 @@
      </property>
     </widget>
    </widget>
-   <widget class="QListView" name="charList">
-    <property name="geometry">
-     <rect>
-      <x>750</x>
-      <y>10</y>
-      <width>256</width>
-      <height>361</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="chatEdit">
+   <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
      <rect>
       <x>690</x>
-      <y>390</y>
+      <y>430</y>
       <width>321</width>
       <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>20</y>
+      <width>291</width>
+      <height>401</height>
      </rect>
     </property>
    </widget>
@@ -236,9 +236,26 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>lineEdit</sender>
+   <signal>returnPressed()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>returnPressed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>771</x>
+     <y>486</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>722</x>
+     <y>540</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>initVideo()</slot>
   <slot>handDetect()</slot>
+  <slot>returnPressed()</slot>
  </slots>
 </ui>
